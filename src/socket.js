@@ -1,6 +1,15 @@
-import { io } from "socket.io-client";
-import { BACKEND_URL } from "./config"; // Importando a URL do backend
+const socket = new WebSocket("https://jogo-de-senhas-backend.onrender.com");
 
-const socket = io(BACKEND_URL); // Usando a URL do backend no WebSocket
+socket.onopen = () => {
+    console.log("✅ Conectado ao servidor WebSocket!");
+};
+
+socket.onmessage = (event) => {
+    console.log("📩 Mensagem recebida:", event.data);
+};
+
+socket.onclose = () => {
+    console.log("⚠️ Conexão WebSocket fechada.");
+};
 
 export default socket;
